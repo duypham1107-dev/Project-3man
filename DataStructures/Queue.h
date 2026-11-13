@@ -14,7 +14,7 @@ struct Queue
     WaitNode *rear;
 };
 
-void initQueue(Queue &q);
+void initQueue(Queue &);
 bool isEmpty(Queue &q);
 bool enqueue(Queue &q, string MSSV);
 bool dequeue(Queue &q);

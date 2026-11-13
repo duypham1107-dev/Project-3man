@@ -2,16 +2,11 @@
 #include <iostream>
 using namespace std;
 
-WaitNode *initQueue(string x)
+void initQueue(Queue &q)
 {
-    WaitNode *p = new WaitNode;
-    if (p == NULL)
-        return NULL;
-    p->MSSV = x;
-    p->next = NULL;
-    return p;
+    q.front = nullptr;
+    q.rear = nullptr;
 }
-
 bool isEmpty(Queue &q)
 {
     if (q.front == NULL)
@@ -21,7 +16,9 @@ bool isEmpty(Queue &q)
 
 bool enqueue(Queue &q, string x)
 {
-    WaitNode *p = initQueue(x);
+    WaitNode *p = new WaitNode;
+    p->MSSV = x;
+    p->next = nullptr;
     if (p == NULL)
         return 0;
     if (q.front == NULL)
@@ -66,4 +63,17 @@ void printQueue(Queue &q)
         cout << p->MSSV << " ";
         p = p->next;
     }
+}
+
+void destroyQueue(Queue &q)
+{
+    WaitNode *p = q.front;
+    while (p != nullptr)
+    {
+        q.front = p->next;
+        delete p;
+        p = q.front;
+    }
+    q.front = nullptr;
+    q.rear = nullptr;
 }
