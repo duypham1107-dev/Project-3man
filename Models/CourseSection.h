@@ -1,40 +1,26 @@
-#pragma once
-#include "../DataStructures/Queue.h"
+#ifndef COURSE_SECTION_H
+#define COURSE_SECTION_H
+
 #include <string>
 using namespace std;
 
-struct CourseSection
-{
-    string sectionID;
-    string courseName;
-    int credits;
-    int maxStudents;
-    int currentStudents;
-
-    int day;
-    int startPeriod;
-    int numberOfPeriods;
-
-    Queue seniorQueue;
-    Queue normalQueue;
+//thông tin 1 Lớp học phần
+struct CourseSection {
+    string sectionId;      // Mã lớp học phần
+    string courseId;       // Mã học phần gốc
+    string sectionName;    // Tên lớp học phần
+    int maxCapacity;       // Sĩ số tối đa
+    int currentEnrolled;   // Số sinh viên hiện tại đã đăng ký
+    int dayOfWeek;
+    int startPeriod;       // Tiết bắt đầu (1 -> 12)
+    int numPeriods;        // Số tiết học
+    bool isOpen;           // Trạng thái lớp: true (1) = Mở, false (0) = Đóng
 };
 
-struct CourseSectionNode
-{
+//DSLK đơn quản lý Lớp học phần
+struct SectionNode {
     CourseSection data;
-    CourseSectionNode *next;
+    SectionNode* next;
 };
 
-struct CourseSectionList
-{
-    CourseSectionNode *head;
-    CourseSectionNode *tail;
-};
-
-void initList(CourseSectionList &list);
-void addTail(CourseSectionList &list, CourseSection s);
-void addHead(CourseSectionList &list, CourseSection s);
-void printList(CourseSectionList &list);
-bool removeSection(CourseSectionList &list, string sectionID);
-CourseSectionNode *searchSection(CourseSectionList &list, string sectionID);
-void destroyList(CourseSectionList &list);
+#endif
