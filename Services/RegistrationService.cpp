@@ -1,4 +1,4 @@
-#include "./RegistrationManager.h"
+#include "./RegistrationService.h"
 
 bool registerCourse(HashTable &ht, CourseSectionList &list, string mssv, string idSection)
 {

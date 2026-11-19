@@ -17,10 +17,11 @@ bool isEmpty(Queue &q)
 bool enqueue(Queue &q, string x)
 {
     WaitNode *p = new WaitNode;
-    p->MSSV = x;
-    p->next = nullptr;
     if (p == NULL)
         return 0;
+    p->MSSV = x;
+    p->next = nullptr;
+
     if (q.front == NULL)
     {
         q.front = q.rear = p;
@@ -49,7 +50,10 @@ bool dequeue(Queue &q)
 bool getFront(Queue &q, string &result)
 {
     if (isEmpty(q))
-        return false;
+    {
+        cout << "Hang doi rong!\n";
+        return;
+    }
 
     result = q.front->MSSV;
     return true;
